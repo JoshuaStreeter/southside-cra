@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;600;700&display=swap">
+  <style>
+    body { margin: 0; background: #FAF6F0; }
+    a { color: #8F3D28; text-decoration: underline; }
+    a:hover { color: #14293F; }
+  </style>
+</helmet>
+<div style="width: 390px; background: #FAF6F0; font-family: 'Nunito', 'Trebuchet MS', sans-serif; color: #2F3A45; padding: 30px 24px 34px 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px;">
+
+  <div>
+    <div style="color: #8F3D28; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px;">Step 1</div>
+    <h2 style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 27px; line-height: 1.2; color: #14293F; margin: 0 0 8px 0;">Is the house in the area?</h2>
+    <p style="font-size: 16px; line-height: 1.55; margin: 0; color: #4A5561;">The money only works for homes inside the South St. Pete redevelopment area. Type an address and we will check it on the map.</p>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    <div style="font-size: 14px; font-weight: 700; color: #14293F;">Street address</div>
+    <div style="min-height: 54px; background: #FFFFFF; border: 1px solid #8C8371; display: flex; align-items: center; padding: 0 14px; font-size: 16px; color: #14293F;">725 17th Ave S, St Petersburg, FL</div>
+    <button type="button" style="min-height: 54px; background: #14293F; color: #FFFFFF; border: 0; font-family: 'Nunito', 'Trebuchet MS', sans-serif; font-size: 17px; font-weight: 700; cursor: pointer;">Check this address</button>
+  </div>
+
+  <div style="border: 1px solid #E8DFD1; background: #FFFFFF; padding: 8px;">
+    <svg width="326" height="252" viewBox="0 0 326 252" role="img" aria-label="Map of the South St. Pete redevelopment area with the checked address marked inside it">
+      <rect x="0" y="0" width="326" height="252" fill="#EAE5DB"></rect>
+      <g stroke="#DBD3C4" stroke-width="7">
+        <line x1="0" y1="52" x2="326" y2="52"></line>
+        <line x1="0" y1="112" x2="326" y2="112"></line>
+        <line x1="0" y1="172" x2="326" y2="172"></line>
+        <line x1="0" y1="222" x2="326" y2="222"></line>
+        <line x1="58" y1="0" x2="58" y2="252"></line>
+        <line x1="132" y1="0" x2="132" y2="252"></line>
+        <line x1="206" y1="0" x2="206" y2="252"></line>
+        <line x1="272" y1="0" x2="272" y2="252"></line>
+      </g>
+      <path d="M34 74 L34 40 L150 40 L150 22 L246 22 L246 62 L272 62 L272 208 L34 208 Z" fill="#C0563A" fill-opacity="0.16" stroke="#C0563A" stroke-width="2.5" stroke-linejoin="round"></path>
+      <text x="44" y="200" font-family="Nunito, Trebuchet MS, sans-serif" font-size="10" letter-spacing="1.4" fill="#8F3D28">SOUTH ST. PETE CRA</text>
+      <g transform="translate(152 118)">
+        <path d="M0 20 C0 20 -10 8 -10 0 A10 10 0 0 1 10 0 C10 8 0 20 0 20 Z" fill="#14293F"></path>
+        <circle cx="0" cy="0" r="3.6" fill="#FFFFFF"></circle>
+      </g>
+    </svg>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #B9D2C2; border-left: 5px solid #2E6B4F; padding: 18px;">
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2E6B4F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"></path></svg>
+      <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 21px; font-weight: 700; color: #2E6B4F;">This address is inside</div>
+    </div>
+    <p style="font-size: 15px; line-height: 1.55; margin: 0 0 14px 0; color: #4A5561;">725 17th Ave S sits inside the redevelopment area, so a home here may be eligible. Next, run your own numbers.</p>
+    <a href="#calculator" style="display: flex; align-items: center; justify-content: center; min-height: 48px; background: #C0563A; color: #FFFFFF; font-size: 16px; font-weight: 700; text-decoration: none;">See what you may get</a>
+  </div>
+
+  <div style="border-top: 1px solid #E4DACB; padding-top: 16px;">
+    <div style="font-size: 14px; font-weight: 700; color: #14293F; margin-bottom: 8px;">Roughly, the area runs:</div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; font-size: 14px; line-height: 1.4; color: #4A5561;">
+      <div><span style="color: #5C6672;">North</span><br>2nd Ave N / I-275 / I-175 / Booker Creek</div>
+      <div><span style="color: #5C6672;">East</span><br>4th St S</div>
+      <div><span style="color: #5C6672;">South</span><br>30th Ave S</div>
+      <div><span style="color: #5C6672;">West</span><br>49th St S</div>
+    </div>
+    <p style="font-size: 13px; line-height: 1.5; color: #5C6672; margin: 14px 0 0 0;">Close to the edge? This map is a first check, not a ruling. Ask the city before you plan around it.</p>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

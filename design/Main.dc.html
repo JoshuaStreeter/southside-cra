@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;600;700&display=swap">
+  <style>
+    body { margin: 0; background: #FAF6F0; }
+    a { color: #8F3D28; text-decoration: underline; }
+    a:hover { color: #14293F; }
+  </style>
+</helmet>
+<div style="width: 390px; background: #FAF6F0; font-family: 'Nunito', 'Trebuchet MS', sans-serif; color: #2F3A45; padding: 30px 24px 34px 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px;">
+
+  <div>
+    <div style="color: #8F3D28; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px;">Step 2</div>
+    <h2 style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 27px; line-height: 1.2; color: #14293F; margin: 0 0 8px 0;">Run your own numbers</h2>
+    <p style="font-size: 16px; line-height: 1.55; margin: 0; color: #4A5561;">Six answers. No name, no email, nothing saved.</p>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E8DFD1; padding: 20px 18px; display: flex; flex-direction: column; gap: 20px;">
+
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div style="font-size: 14px; font-weight: 700; color: #14293F;">People living in the home</div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px;">
+        <button type="button" style="min-height: 48px; background: #FFFFFF; color: #14293F; border: 1px solid #8C8371; font-family: 'Nunito', 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer;">1</button>
+        <button type="button" style="min-height: 48px; background: #14293F; color: #FFFFFF; border: 1px solid #14293F; font-family: 'Nunito', 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer;">2</button>
+        <button type="button" style="min-height: 48px; background: #FFFFFF; color: #14293F; border: 1px solid #8C8371; font-family: 'Nunito', 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer;">3</button>
+        <button type="button" style="min-height: 48px; background: #FFFFFF; color: #14293F; border: 1px solid #8C8371; font-family: 'Nunito', 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; cursor: pointer;">4+</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="font-size: 14px; font-weight: 700; color: #14293F;">Household income before taxes, per year</div>
+      <div style="min-height: 52px; background: #FFFFFF; border: 1px solid #8C8371; display: flex; align-items: center; padding: 0 14px; font-size: 18px; font-weight: 700; color: #14293F;">$68,000</div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div style="font-size: 14px; font-weight: 700; color: #14293F;">Credit score range</div>
+      <div style="min-height: 52px; background: #FFFFFF; border: 1px solid #8C8371; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; font-size: 16px; color: #14293F;">
+        <span>680 to 719</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C6672" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"></path></svg>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px;">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="font-size: 14px; font-weight: 700; color: #14293F;">Monthly debts <span style="font-weight: 400; color: #5C6672;">(optional)</span></div>
+        <div style="min-height: 52px; background: #FFFFFF; border: 1px solid #8C8371; display: flex; align-items: center; padding: 0 12px; font-size: 17px; font-weight: 700; color: #14293F;">$400</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="font-size: 14px; font-weight: 700; color: #14293F;">Rent now <span style="font-weight: 400; color: #5C6672;">(optional)</span></div>
+        <div style="min-height: 52px; background: #FFFFFF; border: 1px solid #8C8371; display: flex; align-items: center; padding: 0 12px; font-size: 17px; font-weight: 700; color: #14293F;">$1,850</div>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; border-top: 1px solid #EFE7D9; padding-top: 16px;">
+      <div style="font-size: 14px; color: #5C6672;">Interest rate used</div>
+      <div style="min-height: 44px; min-width: 96px; background: #FFFFFF; border: 1px solid #8C8371; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: #14293F;">6.5%</div>
+    </div>
+
+  </div>
+
+  <div style="background: #14293F; padding: 24px 20px; border-top: 3px solid #D99A2B;">
+    <div style="color: #D99A2B; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px;">What this looks like</div>
+    <div style="font-size: 16px; color: #C9D6E2; margin-bottom: 4px;">You may be able to buy a home up to</div>
+    <div style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 52px; line-height: 1.05; color: #FFFFFF;">$306,440</div>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #B9D2C2; border-left: 5px solid #2E6B4F; padding: 18px;">
+    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
+      <span style="background: #2E6B4F; color: #FFFFFF; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 10px;">Fully forgivable</span>
+      <span style="border: 1px solid #8C8371; color: #5C6672; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 8px;">Estimated</span>
+    </div>
+    <div style="font-size: 15px; line-height: 1.55; color: #4A5561;">Your income puts you in the <strong style="color: #14293F;">between 81% and 120%</strong> of area median income for a 2-person household. The rule for this band: 100% forgivable after 10 years of owner occupancy.</div>
+  </div>
+
+  <div style="background: #FDF6E7; border: 1px solid #E9D3A3; padding: 18px; display: flex; gap: 12px;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B07213" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: 1px;" aria-hidden="true"><path d="M12 3 22 20H2L12 3Z"></path><path d="M12 10v4"></path><path d="M12 17.2v.1"></path></svg>
+    <div>
+      <div style="font-size: 15px; font-weight: 700; color: #8A5A0E; margin-bottom: 6px;">Money in your band may be waitlisted</div>
+      <div style="font-size: 14px; line-height: 1.55; color: #6B5321;">As of April 2026 the city was over its spending limit for applications between 81% and 140% of area median income. You may still apply, but ask where the funding stands before you write an offer.</div>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 12px;">
+    <div style="background: #FFFFFF; border: 1px solid #E8DFD1; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px;">
+      <div style="font-size: 15px; line-height: 1.4; color: #4A5561;">City may put in<br><span style="font-size: 13px; color: #5C6672;">20% of price plus $10,000 closing</span></div>
+      <div style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 30px; color: #14293F; white-space: nowrap;">$71,288</div>
+    </div>
+    <div style="background: #FFFFFF; border: 1px solid #E8DFD1; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px;">
+      <div style="font-size: 15px; line-height: 1.4; color: #4A5561;">Cash you bring<br><span style="font-size: 13px; color: #5C6672;">your 1% share of the price</span></div>
+      <div style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 30px; color: #14293F; white-space: nowrap;">$3,064</div>
+    </div>
+    <div style="background: #FFFFFF; border: 1px solid #E8DFD1; padding: 16px 18px; display: flex; align-items: center; justify-content: space-between; gap: 14px;">
+      <div style="font-size: 15px; line-height: 1.4; color: #4A5561;">Payment each month<br><span style="font-size: 13px; color: #5C6672;">loan, taxes and insurance</span></div>
+      <div style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 30px; color: #14293F; white-space: nowrap;">$2,150</div>
+    </div>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E8DFD1; border-left: 5px solid #D99A2B; padding: 18px;">
+    <div style="font-size: 15px; font-weight: 700; color: #14293F; margin-bottom: 6px;">You may skip mortgage insurance here</div>
+    <div style="font-size: 14px; line-height: 1.55; color: #4A5561;">The city money acts like a down payment. It brings your loan to about 76% of the price, under the 80% line, so a regular loan would carry no mortgage insurance. An FHA loan the same size would add roughly <strong style="color: #14293F;">$97 to $106 a month</strong>, plus $4,062 up front, and it does not fall off on its own.</div>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E8DFD1; padding: 18px;">
+    <div style="font-size: 15px; font-weight: 700; color: #14293F; margin-bottom: 10px;">Against your rent</div>
+    <div style="display: flex; align-items: flex-end; gap: 18px;">
+      <div>
+        <div style="font-size: 13px; color: #5C6672; margin-bottom: 2px;">Rent now</div>
+        <div style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 26px; color: #5C6672;">$1,850</div>
+      </div>
+      <div style="font-size: 22px; color: #8C8371; padding-bottom: 4px;">&rarr;</div>
+      <div>
+        <div style="font-size: 13px; color: #5C6672; margin-bottom: 2px;">Owning</div>
+        <div style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 26px; color: #14293F;">$2,150</div>
+      </div>
+    </div>
+    <div style="font-size: 14px; line-height: 1.55; color: #4A5561; margin-top: 12px;">About <strong style="color: #14293F;">$300 more</strong> a month. Your rent goes up every year. A fixed loan payment does not, and the part you pay down stays yours.</div>
+  </div>
+
+  <div style="border-top: 1px solid #E4DACB; padding-top: 16px; display: flex; flex-direction: column; gap: 12px;">
+    <p style="font-size: 13px; line-height: 1.55; color: #5C6672; margin: 0;">Income limits marked <strong>estimated</strong> come from last year's table while the city finishes this year's. Taxes are figured at 1.5% of the price, because the low tax bill on the seller's current statement resets when the home sells. It will not be your bill.</p>
+    <p style="font-size: 14px; line-height: 1.55; color: #14293F; margin: 0; font-weight: 600;">These are estimates. Verify with a lender who has closed CRA deals, or Neighborhood Home Solutions at (727) 821-6897.</p>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

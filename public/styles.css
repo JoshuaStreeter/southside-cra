@@ -51,7 +51,7 @@ p { margin: 0 0 1rem; text-wrap: pretty; }
 p:last-child { margin-bottom: 0; }
 
 a { color: var(--terracotta-dark); }
-a:hover { color: var(--terracotta); }
+a:hover { color: var(--navy); }
 
 :focus-visible { outline: 3px solid var(--terracotta); outline-offset: 2px; }
 
