@@ -9,7 +9,15 @@ Free community resource by IBuyStPete.com. Check an address, run your numbers, s
 3. Netlify: New site from Git -> this repo. Site settings -> Environment variables -> `ANTHROPIC_API_KEY`.
 4. Drop `cra_boundary.geojson` into `public/` (see `scripts/fetch-boundary.md`) and `hero.jpg` into `public/img/`.
 
+## Two things the site is waiting on
+Until these are added, the site still works - it just says so plainly instead of guessing.
+- **`public/cra_boundary.geojson`** - without it the address check is switched off and points people at the city's own map. See `scripts/fetch-boundary.md`.
+- **`public/img/hero.jpg`** - without it the top of the page is flat navy behind the headline. Any wide neighborhood photo works.
+
+## Checking it still works
+Run `npm run verify` (or `bash verify.sh`). It checks the numbers file is valid, that no dollar figure is hardcoded into the page, that the calculator still gets the known answers right, and that the chat function responds. It never changes anything, so it is safe to run any time - especially after editing a number.
+
 ## Editing program facts later
-- Numbers: `data/program-data.json` (update `lastVerified`).
+- Numbers: `public/data/program-data.json` (update `lastVerified`).
 - Rules, status, first-hand notes: `knowledge/CRA_Knowledge_V4.md` (add a dated, tagged line + Changelog entry).
 - Redeploy. Both the calculator and the chat assistant pick up the change.

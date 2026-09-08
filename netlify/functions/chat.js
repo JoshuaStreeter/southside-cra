@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const KNOWLEDGE = fs.readFileSync(path.join(__dirname, "../../knowledge/CRA_Knowledge_V4.md"), "utf8");
-const DATA = fs.readFileSync(path.join(__dirname, "../../data/program-data.json"), "utf8");
+const DATA = fs.readFileSync(path.join(__dirname, "../../public/data/program-data.json"), "utf8");
 
 const SYSTEM = `You are the South St. Pete CRA homebuyer assistant on a free community website run by IBuyStPete.com.
 Follow Section 9 (voice and rules) of the knowledge base exactly. Answer from the knowledge base and program data below.

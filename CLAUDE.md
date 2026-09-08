@@ -26,7 +26,7 @@ The South St. Pete Community Redevelopment Area gives up to $75,000 toward a hom
 
 ## Sources of truth (read these first)
 - `knowledge/CRA_Knowledge_V4.md` — every program fact, source-tagged. **Section 9 = hard rules for all copy and chat output.** Section 11 = open questions; anything listed there renders as "verify with the city."
-- `data/program-data.json` — every number the calculator uses. **Never hardcode a program number in HTML or JS.** Fetch this file at load.
+- `public/data/program-data.json` — every number the calculator uses. **Never hardcode a program number in HTML or JS.** Fetch this file at load. (It lives inside `public/` because Netlify only serves what is in the publish directory; the chat function reads the same one copy.)
 - Nothing in either file is to be "corrected" from your own knowledge. If you think a fact is wrong, say so in chat; don't change it.
 
 ## Site flow (single page, mobile-first)
