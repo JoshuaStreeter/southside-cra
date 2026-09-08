@@ -59,7 +59,9 @@ else
 fi
 
 head_ "4. Calculator"
-node -e '
+# Capture first, then count in this shell: a "| while" loop would tally the
+# calculator checks in a subshell and drop them from the total.
+calcout=$(node -e '
 const assert=require("assert");
 const c=require("./public/calc.js");
 const fs=require("fs");
@@ -169,10 +171,11 @@ check("COUNTER-TEST: halving the closing allowance lowers the $300,000 figure", 
 });
 for(const [status,name] of checks) console.log(status+"\t"+name);
 process.exit(checks.some(x=>x[0]==="FAIL")?1:0);
-' 2>&1 | while IFS=$'\t' read -r status name; do
+' 2>&1); calcstatus=$?
+while IFS=$'\t' read -r status name; do
+  [ -z "$status" ] && continue
   [ "$status" = "PASS" ] && ok "$name" || bad "${status} ${name}"
-done
-calcstatus=${PIPESTATUS[0]}
+done <<< "$calcout"
 
 head_ "5. Chat function"
 node -e '
