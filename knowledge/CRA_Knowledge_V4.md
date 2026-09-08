@@ -49,13 +49,21 @@ Each tag may carry a date, e.g. `[DIRECTOR 2026-04]`. When you learn something n
 
 ### 4.1 Income (AMI)
 - `[CITY-WEB]` Eligibility runs to **140% of Area Median Income** for the Tampa–St. Petersburg–Clearwater MSA, adjusted for household size.
-- `[HUD/SHIP 2026-06]` **FY2026 SHIP limits (effective May 2026), 2-person household: 100% AMI = $91,700; 120% AMI = $110,040.** This is the confirmed current figure and it moved substantially from the FY2025 numbers below.
-- `[HUD/SHIP FY2025 — STALE]` Prior-year figures, kept for reference until the full FY2026 table is loaded:
-  - 1-person: 80% $58,450 · 100% $73,000 · 120% $87,600 · 140% $102,200
-  - 2-person: 80% $66,800 · 100% $83,400 · 120% $100,150 · 140% $116,760
-  - 3-person: 80% $75,150 · 120% $112,650 (100% and 140% were interpolated, never verified)
-  - 4-person: 80% $83,500 · 120% $125,150 (100% and 140% were interpolated, never verified)
-- `[TODO]` Load the full FY2026 SHIP table for 1–8 person households at 80/100/120/140% from the City of St. Petersburg's official FY2026 income limits. Until then, any figure other than the 2-person FY2026 line must be labeled "estimated" on the site.
+- `[HUD/SHIP FY2026 — verified 2026-09-08]` **Full FY2026 SHIP table, effective May 1, 2026. Area median income $104,700.** Source: floridahousing.org SHIP-HHRP 2026 combined income limits. This replaces the FY2025 figures and the interpolated rows that preceded it; nothing in this table is estimated.
+
+| Household | 80% | 100% | 120% | 140% |
+|---|---|---|---|---|
+| 1 | $64,250 | $80,300 | $96,360 | $112,420 |
+| 2 | $73,400 | $91,700 | $110,040 | $128,380 |
+| 3 | $82,600 | $103,200 | $123,840 | $144,480 |
+| 4 | $91,750 | $114,700 | $137,640 | $160,580 |
+| 5 | $99,100 | $123,900 | $148,680 | $173,460 |
+| 6 | $106,450 | $133,100 | $159,720 | $186,340 |
+| 7 | $113,800 | $142,300 | $170,760 | $199,220 |
+| 8 | $121,150 | $151,400 | $181,680 | $211,960 |
+
+- `[DERIVED]` The 100% column is the published 120% figure divided by 1.2, and 140% is exactly 1.4 × 100% in every row. **The 80% column is not 0.8 × 100%** — HUD publishes it separately and it runs slightly above or below that line depending on household size. Never derive an 80% figure; use the published one.
+- `[JOSH]` For households larger than 8, the limits keep rising. The site falls back to the 8-person row and tells the visitor to ask the city, which is the conservative direction.
 - `[DIRECTOR 2026-04]` **Funding status: as of April 2026 the city was over its spending limit for applications in the 81–140% AMI band.** Applicants in that band may be waitlisted or declined for funding reasons even though they meet the rules. Applicants at or below 80% AMI were still being funded. `[TODO]` Re-verify — this is the single most important status fact on the site.
 
 ### 4.2 Forgiveness tiers
@@ -182,7 +190,7 @@ Each tag may carry a date, e.g. `[DIRECTOR 2026-04]`. When you learn something n
 ---
 
 ## 11. Open questions — verify with city staff
-1. Full FY2026 AMI table, 1–8 persons, 80/100/120/140%.
+1. ~~Full FY2026 AMI table, 1–8 persons, 80/100/120/140%.~~ **CLOSED 2026-09-08** — full verified table loaded into Section 4.1 and `public/data/program-data.json`.
 2. Current funding status for the 81–140% band. Waitlist? Reopening date?
 3. Is the $544,233 purchase price cap still current?
 8. Is the $10,000 closing-cost allowance formally in the program guidelines yet, or staff practice?
@@ -195,6 +203,7 @@ Each tag may carry a date, e.g. `[DIRECTOR 2026-04]`. When you learn something n
 ---
 
 ## Changelog
+- **2026-09-08 V4.3** — `[HUD/SHIP FY2026]` Loaded the full verified FY2026 SHIP table for households 1–8 (effective 2026-05-01, area median $104,700, floridahousing.org SHIP-HHRP 2026 combined limits), replacing the FY2025 rows, the interpolated rows, and the 0.8×/1.4× derived rows added in V4.2. Every row is now `estimated: false` and the site no longer shows an "estimated" tag or the estimated-limits footnote. Open question 1 is closed. Note that the published 80% column is **not** 0.8× the 100% figure, which is why the V4.2 stopgap was wrong: the derived 2-person 80% was $73,360 against a real $73,400. `[DERIVED 2026-09]` The city's closing-cost help is now modelled as `min(closingCostMax, estimated closing costs)` rather than the full allowance at every price — this reads "up to $10,000" literally and **changes the Section 3 worked example**: a $300,000 purchase now computes to $67,500 of assistance, not $70,000. Confirm with the program director which reading is right.
 - **2026-09-08 V4.2** — `[DERIVED 2026-09]` Added `estClosingCostPct` 0.025 to the site's affordability defaults (typical Pinellas buyer costs; the city's closing allowance offsets it). "Cash you bring" is now the 1% buyer contribution plus any estimated closing costs above the city's allowance, floored at the 1% contribution. `[DERIVED 2026-09]` All 80% and 140% AMI figures are now derived from each household's 100% figure at 0.8x and 1.4x, replacing the mixed FY2025/FY2026 rows — a 2-person household at $68,000 (74% of the verified FY2026 100% figure) was landing above the stale FY2025 80% limit of $66,800 and being shown the 81–140% waitlist warning. All rows stay `estimated: true` until the full FY2026 SHIP table is loaded (open question 1). Note that HUD does not publish 80% limits as a straight 0.8x of the 100% figure, so these remain a stopgap.
 - **2026-09-07 V4.1** — Closing-cost allowance $5K→$10K (employee). Facade grant is up-front cash, not reimbursement. 203(k) structure corrected (single first mortgage with escrow, not a second). Property tax default 0.88%→1.5% (SOH reset). FHA MIP 0.85%→0.55%. Rehab rebate status re-checked (city still shows hold). U.S. Bank grant flagged unverified. Nov 2026 homestead ballot noted.
 - **2026-09-07 V4.0** — Reconstructed from V3 chat record. Added source tags, FY2026 2-person AMI, homestead tax rate, FHA MIP rules, lender grants, rehab-rebate status conflict, and the open-questions list. Marked FY2025 AMI figures stale.
