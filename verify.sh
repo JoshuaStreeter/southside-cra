@@ -67,8 +67,11 @@ const data=JSON.parse(fs.readFileSync("'"$DATA"'","utf8"));
 const checks=[];
 function check(name,fn){ try{ fn(); checks.push(["PASS",name]); }catch(e){ checks.push(["FAIL",name+" -- "+e.message]); } }
 
-check("$300,000 price gives 20% + the closing allowance", ()=>
-  assert.strictEqual(Math.round(c.assistance(data,300000)), 300000*data.assistance.pctOfPrice + data.assistance.closingCostMax));
+check("$300,000 price gives 20% plus the lesser of the allowance and estimated costs", ()=>{
+  const est=300000*data.affordability.estClosingCostPct;
+  assert.strictEqual(Math.round(c.closingAllowance(data,300000)), Math.round(Math.min(data.assistance.closingCostMax, est)));
+  assert.strictEqual(Math.round(c.assistance(data,300000)), Math.round(300000*data.assistance.pctOfPrice + Math.min(data.assistance.closingCostMax, est)));
+});
 check("$350,000 price is held to the program cap", ()=>
   assert.strictEqual(Math.round(c.assistance(data,350000)), data.assistance.totalCap));
 check("a 2-person household at $95,000 lands in the 81-120% band", ()=>{
@@ -86,8 +89,11 @@ check("a household at or below the 80% limit gets no funding warning", ()=>{
 });
 check("income over the top limit is not eligible", ()=>
   assert.strictEqual(c.amiBand(data,2,data.ami.households["2"]["140"]+1).eligible,false));
-check("estimated income limits are flagged", ()=>
-  assert.strictEqual(c.amiBand(data,2,95000).estimated,true));
+check("no income limit is flagged estimated", ()=>{
+  assert.strictEqual(c.amiBand(data,2,95000).estimated,false);
+  for (const [size,row] of Object.entries(data.ami.households))
+    assert.strictEqual(row.estimated,false,"household "+size+" is flagged estimated");
+});
 check("max price stays inside the DTI limit", ()=>{
   const income=68000, debts=400;
   const p=c.maxPurchasePrice(data,{annualIncome:income,monthlyDebts:debts});
@@ -102,6 +108,14 @@ check("assistance pushes this buyer under the no-mortgage-insurance line", ()=>{
   const p=c.maxPurchasePrice(data,{annualIncome:68000,monthlyDebts:400});
   assert.ok(c.noConventionalMI(data,p),"LTV was "+c.loanToValue(data,p).toFixed(3));
 });
+check("the $68,000 2-person case pins to a $304,010 purchase price", ()=>{
+  const p=c.maxPurchasePrice(data,{annualIncome:68000,monthlyDebts:400});
+  assert.strictEqual(Math.round(p),304010,"max price moved to "+Math.round(p));
+  assert.strictEqual(Math.round(c.assistance(data,p)),68402);
+  assert.strictEqual(Math.round(c.cashToClose(data,p)),3040);
+  assert.strictEqual(Math.round(c.monthlyHousing(data,p,data.affordability.defaultRate)),2150);
+  assert.ok(c.noConventionalMI(data,p),"LTV was "+c.loanToValue(data,p).toFixed(3));
+});
 check("the $68,000 2-person case is at or below 80% with no funding warning", ()=>{
   const b=c.amiBand(data,2,68000);
   assert.strictEqual(b.bandMax,80);
@@ -109,12 +123,31 @@ check("the $68,000 2-person case is at or below 80% with no funding warning", ()
   assert.strictEqual(b.fundingWarning,false);
   assert.strictEqual(b.tier.color,"green");
 });
-check("80% and 140% limits stay derived from each household 100% figure", ()=>{
-  for (const [size,row] of Object.entries(data.ami.households)) {
-    if (typeof row["100"] !== "number") continue;
-    assert.strictEqual(row["80"], Math.round(row["100"]*0.8), "household "+size+" 80%");
-    assert.strictEqual(row["140"], Math.round(row["100"]*1.4), "household "+size+" 140%");
+check("the FY2026 SHIP table matches the published limits for households 1-8", ()=>{
+  const want={
+    "1":{80:64250,100:80300,120:96360,140:112420},
+    "2":{80:73400,100:91700,120:110040,140:128380},
+    "3":{80:82600,100:103200,120:123840,140:144480},
+    "4":{80:91750,100:114700,120:137640,140:160580},
+    "5":{80:99100,100:123900,120:148680,140:173460},
+    "6":{80:106450,100:133100,120:159720,140:186340},
+    "7":{80:113800,100:142300,120:170760,140:199220},
+    "8":{80:121150,100:151400,120:181680,140:211960}
+  };
+  assert.deepStrictEqual(Object.keys(data.ami.households).sort(), Object.keys(want).sort());
+  for (const [size,row] of Object.entries(want))
+    for (const pct of [80,100,120,140])
+      assert.strictEqual(data.ami.households[size][String(pct)], row[pct], "household "+size+" at "+pct+"%");
+  assert.strictEqual(data.ami.fiscalYear,"FY2026");
+  assert.strictEqual(data.ami.effective,"2026-05-01");
+});
+check("every household size resolves to its own published row", ()=>{
+  for (const size of [1,2,3,4,5,6,7,8]) {
+    const picked=c.amiRow(data,size);
+    assert.strictEqual(picked.sizeUsed,size);
+    assert.strictEqual(picked.sizeCapped,false);
   }
+  assert.strictEqual(c.amiRow(data,9).sizeCapped,true);
 });
 check("cash to close is only the buyer share while the allowance covers closing costs", ()=>{
   const p=300000;

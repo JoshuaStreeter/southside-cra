@@ -12,10 +12,16 @@
     return principal * r * growth / (growth - 1);
   }
 
-  // 20% of the price plus the closing allowance, held to the program cap.
+  // The city puts up to closingCostMax toward closing costs - "up to", so no
+  // more than the costs are estimated to be.
+  function closingAllowance(data, price) {
+    return Math.min(data.assistance.closingCostMax, price * data.affordability.estClosingCostPct);
+  }
+
+  // 20% of the price plus that closing help, held to the program cap.
   function assistance(data, price) {
     var a = data.assistance;
-    return Math.min(price * a.pctOfPrice + a.closingCostMax, a.totalCap);
+    return Math.min(price * a.pctOfPrice + closingAllowance(data, price), a.totalCap);
   }
 
   // The buyer's own required share of the price.
@@ -27,9 +33,8 @@
      estimated closing costs the city's allowance does not cover. Never less
      than the required share. */
   function cashToClose(data, price) {
-    var a = data.assistance;
     var estimated = price * data.affordability.estClosingCostPct;
-    return buyerContribution(data, price) + Math.max(0, estimated - a.closingCostMax);
+    return buyerContribution(data, price) + Math.max(0, estimated - closingAllowance(data, price));
   }
 
   function firstMortgage(data, price) {
@@ -139,6 +144,7 @@
 
   var api = {
     monthlyPI: monthlyPI,
+    closingAllowance: closingAllowance,
     assistance: assistance,
     buyerContribution: buyerContribution,
     cashToClose: cashToClose,
