@@ -23,6 +23,15 @@
     return price * data.assistance.buyerContribPct;
   }
 
+  /* What the buyer actually writes a check for: their required share, plus any
+     estimated closing costs the city's allowance does not cover. Never less
+     than the required share. */
+  function cashToClose(data, price) {
+    var a = data.assistance;
+    var estimated = price * data.affordability.estClosingCostPct;
+    return buyerContribution(data, price) + Math.max(0, estimated - a.closingCostMax);
+  }
+
   function firstMortgage(data, price) {
     return Math.max(0, price - assistance(data, price) - buyerContribution(data, price));
   }
@@ -132,6 +141,7 @@
     monthlyPI: monthlyPI,
     assistance: assistance,
     buyerContribution: buyerContribution,
+    cashToClose: cashToClose,
     firstMortgage: firstMortgage,
     loanToValue: loanToValue,
     noConventionalMI: noConventionalMI,

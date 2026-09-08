@@ -102,6 +102,31 @@ check("assistance pushes this buyer under the no-mortgage-insurance line", ()=>{
   const p=c.maxPurchasePrice(data,{annualIncome:68000,monthlyDebts:400});
   assert.ok(c.noConventionalMI(data,p),"LTV was "+c.loanToValue(data,p).toFixed(3));
 });
+check("the $68,000 2-person case is at or below 80% with no funding warning", ()=>{
+  const b=c.amiBand(data,2,68000);
+  assert.strictEqual(b.bandMax,80);
+  assert.strictEqual(b.bandLabel,"at or below 80%");
+  assert.strictEqual(b.fundingWarning,false);
+  assert.strictEqual(b.tier.color,"green");
+});
+check("80% and 140% limits stay derived from each household 100% figure", ()=>{
+  for (const [size,row] of Object.entries(data.ami.households)) {
+    if (typeof row["100"] !== "number") continue;
+    assert.strictEqual(row["80"], Math.round(row["100"]*0.8), "household "+size+" 80%");
+    assert.strictEqual(row["140"], Math.round(row["100"]*1.4), "household "+size+" 140%");
+  }
+});
+check("cash to close is only the buyer share while the allowance covers closing costs", ()=>{
+  const p=300000;
+  assert.ok(p*data.affordability.estClosingCostPct <= data.assistance.closingCostMax, "precondition failed");
+  assert.strictEqual(Math.round(c.cashToClose(data,p)), Math.round(c.buyerContribution(data,p)));
+});
+check("cash to close picks up closing costs above the allowance", ()=>{
+  const p=data.assistance.maxPurchasePrice;
+  const over=p*data.affordability.estClosingCostPct - data.assistance.closingCostMax;
+  assert.ok(over>0,"precondition failed");
+  assert.strictEqual(Math.round(c.cashToClose(data,p)), Math.round(c.buyerContribution(data,p)+over));
+});
 check("COUNTER-TEST: halving the closing allowance lowers the $300,000 figure", ()=>{
   const bent=JSON.parse(JSON.stringify(data));
   bent.assistance.closingCostMax=5000;

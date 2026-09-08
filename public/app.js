@@ -428,7 +428,7 @@
     }
 
     var help = CRACalc.assistance(DATA, price);
-    var cash = CRACalc.buyerContribution(DATA, price);
+    var cash = CRACalc.cashToClose(DATA, price);
     var payment = CRACalc.monthlyHousing(DATA, price, rate);
     var ltv = CRACalc.loanToValue(DATA, price);
     var noMI = CRACalc.noConventionalMI(DATA, price);
@@ -463,7 +463,7 @@
 
     var figures = el("ul", "figures");
     figures.appendChild(figure("City may put in", percent(DATA.assistance.pctOfPrice) + " of the price plus up to " + money(DATA.assistance.closingCostMax) + " closing", money(help)));
-    figures.appendChild(figure("Cash you bring", "your " + percent(DATA.assistance.buyerContribPct) + " share of the price", money(cash)));
+    figures.appendChild(figure("Cash you bring", "your " + percent(DATA.assistance.buyerContribPct) + " share, plus any closing costs the city's allowance does not cover", money(cash)));
     figures.appendChild(figure("Payment each month", "loan, taxes and insurance", money(payment)));
     out.appendChild(figures);
 
@@ -521,13 +521,15 @@
     footnotes.style.paddingTop = "1rem";
     if (band.estimated) {
       footnotes.appendChild(el("p", "fineprint",
-        "The income limits marked estimated come from an older year's table while the city finishes this year's. " +
+        "The income limits marked estimated are worked out from the city's published figures while the full table for this year is still pending. " +
         "They are close, but the exact line for your household size should come from the city."));
     }
     footnotes.appendChild(el("p", "fineprint",
       "Taxes are figured at " + percent(DATA.affordability.propertyTaxPctOfPrice) +
       " of the price. The low tax bill on the seller's current statement resets when the home sells, so it will not be your bill. Insurance is estimated at " +
-      money(DATA.affordability.homeownersInsuranceAnnual) + " a year. Closing costs above the city's allowance, if any, are on top of the cash shown."));
+      money(DATA.affordability.homeownersInsuranceAnnual) + " a year. Closing costs are estimated at " +
+      percent(DATA.affordability.estClosingCostPct) + " of the price; the city's allowance of up to " +
+      money(DATA.assistance.closingCostMax) + " covers them first, and only what is left over shows up in the cash above."));
     footnotes.appendChild(verifyLine());
     out.appendChild(footnotes);
 
