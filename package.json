@@ -1,0 +1,9 @@
+{
+  "name": "southside-cra",
+  "private": true,
+  "description": "South St. Pete CRA homebuyer assistance - free community resource by IBuyStPete.com",
+  "scripts": {
+    "dev": "netlify dev",
+    "verify": "bash verify.sh"
+  }
+}
