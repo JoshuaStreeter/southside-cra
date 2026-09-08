@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>South St. Pete home buying help &mdash; check an address and run your numbers</title>
+<meta name="description" content="The South St. Petersburg CRA may put money toward buying a home inside the area. Check an address, run your own numbers, and see what the program does and does not do.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Nunito:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the main content</a>
+
+<header class="hero">
+  <div class="hero__photo">
+    <div class="hero__band">
+      <div class="wrap">
+        <p class="eyebrow">South St. Petersburg</p>
+        <h1>Moving into a rental can cost more cash than buying a house here.</h1>
+        <p>First month, last month and a deposit is real money up front, and you never see it again. To buy inside this neighborhood your own share is about <strong data-pct="assistance.buyerContribPct">&mdash;</strong> of the price. The city may put in up to <strong data-money="assistance.totalCap">&mdash;</strong>.</p>
+      </div>
+    </div>
+  </div>
+  <div class="wrap section">
+    <ul class="chips" id="stat-chips"></ul>
+    <a class="btn btn--primary" href="#address">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      Check an address
+    </a>
+    <p class="fineprint" style="text-align:center;margin-top:.75rem">Free. Nothing to sign up for. Built by a local broker, not the city.</p>
+  </div>
+</header>
+
+<main id="main">
+
+<noscript>
+  <div class="wrap section">
+    <div class="note note--amber"><p>This page needs JavaScript to check an address and run the numbers. Every figure is loaded live from the program file so nothing here goes stale.</p></div>
+  </div>
+</noscript>
+
+<div class="wrap section hidden" id="data-error">
+  <div class="note note--red">
+    <p><strong>The program figures could not be loaded, so the address check and the calculator are switched off.</strong> Please try again in a minute, or call Neighborhood Home Solutions at <span data-text="contacts.nhs.phone">&mdash;</span>.</p>
+  </div>
+</div>
+
+<!-- 1. Address check -->
+<section class="section" id="address" aria-labelledby="address-h">
+  <div class="wrap">
+    <p class="eyebrow">Step 1</p>
+    <h2 id="address-h">Is the house in the area?</h2>
+    <p class="lede">The money only works for homes inside the South St. Pete redevelopment area. Type an address and we will check it on the map.</p>
+
+    <form id="address-form" novalidate>
+      <div class="field">
+        <label for="address-input">Street address</label>
+        <input type="text" id="address-input" name="address" autocomplete="street-address" placeholder="725 17th Ave S, St Petersburg, FL">
+      </div>
+      <button class="btn btn--navy" type="submit" id="address-submit">Check this address</button>
+    </form>
+
+    <div class="map" id="map">
+      <p class="map-fallback" id="map-fallback">Loading the map&hellip;</p>
+    </div>
+
+    <div class="verdict hidden" id="verdict" tabindex="-1" aria-live="polite">
+      <h3 id="verdict-title"></h3>
+      <p id="verdict-body"></p>
+      <a class="btn btn--primary hidden" href="#calculator" id="verdict-next">See what you may get</a>
+    </div>
+
+    <div style="border-top:1px solid var(--line);padding-top:1rem;margin-top:1.25rem">
+      <h3>Roughly, the area runs:</h3>
+      <dl class="edges" id="edges"></dl>
+      <p class="fineprint" style="margin-top:.875rem">Close to the edge? This map is a first check, not a ruling. Ask the city before you plan around it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Calculator -->
+<section class="section section--tint" id="calculator" aria-labelledby="calc-h">
+  <div class="wrap">
+    <p class="eyebrow">Step 2</p>
+    <h2 id="calc-h">Run your own numbers</h2>
+    <p class="lede">Six answers. No name, no email, nothing saved.</p>
+
+    <form id="calc-form" class="card" novalidate>
+      <fieldset class="fieldset">
+        <legend>People living in the home</legend>
+        <div class="segmented" id="household"></div>
+      </fieldset>
+
+      <div class="field">
+        <label for="income">Household income before taxes, per year</label>
+        <input type="number" id="income" name="income" inputmode="numeric" min="0" step="1000" placeholder="68000" required>
+      </div>
+
+      <div class="field">
+        <label for="credit">Credit score range</label>
+        <div class="selectwrap">
+          <select id="credit" name="credit">
+            <option value="740">740 or better</option>
+            <option value="680" selected>680 to 739</option>
+            <option value="620">620 to 679</option>
+            <option value="0">Under 620, or I don't know</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label for="debts">Monthly debts <span class="hint">(optional)</span></label>
+          <input type="number" id="debts" name="debts" inputmode="numeric" min="0" step="25" placeholder="0">
+        </div>
+        <div class="field">
+          <label for="rent">Rent now <span class="hint">(optional)</span></label>
+          <input type="number" id="rent" name="rent" inputmode="numeric" min="0" step="25" placeholder="0">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="rate">Interest rate used</label>
+        <input type="number" id="rate" name="rate" inputmode="decimal" min="0" max="20" step="0.125">
+      </div>
+
+      <button class="btn btn--navy" type="submit">Show my numbers</button>
+    </form>
+
+    <div id="results" class="hidden" tabindex="-1" aria-live="polite" style="margin-top:1.25rem"></div>
+  </div>
+</section>
+
+<!-- 3. What it does not do -->
+<section class="section" aria-labelledby="strings-h">
+  <div class="wrap">
+    <div class="card" style="border-top:4px solid var(--navy)">
+      <h2 id="strings-h">What this money will not do</h2>
+      <p class="lede" style="margin-bottom:1.125rem">Every program has strings. Here are these, so nobody finds out at the closing table.</p>
+      <ul class="strings" id="strings"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Stacking -->
+<section class="section section--tint" aria-labelledby="stack-h">
+  <div class="wrap">
+    <p class="eyebrow">Step 3</p>
+    <h2 id="stack-h">What else can sit on top</h2>
+    <p class="lede">These are separate programs. Some pay you up front, some pay you back later. The difference matters.</p>
+    <div id="programs" style="margin-top:1.25rem"></div>
+  </div>
+</section>
+
+<!-- 5. Who does what -->
+<section class="section" aria-labelledby="roles-h">
+  <div class="wrap">
+    <div class="roles">
+      <h2 id="roles-h">Who does what</h2>
+      <ul>
+        <li><b>The city</b><span>Runs the program and holds the money.</span></li>
+        <li><b>Your lender</b><span>Files the application for you. You do not apply on your own. Find one who has closed these before.</span></li>
+        <li><b><span data-text="contacts.nhs.name">&mdash;</span></b><span>The class and free counseling. That is all. They do not approve or fund anything.</span></li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-top:1.25rem">
+      <h3 id="classes-h">Homebuyer class dates</h3>
+      <p class="fineprint" id="classes-when"></p>
+      <ul class="dates" id="classes" aria-labelledby="classes-h"></ul>
+      <p style="font-size:.875rem;margin-top:.875rem">Sign up: <a id="nhs-phone" href="#"><span data-text="contacts.nhs.phone">&mdash;</span></a> &middot; <a id="nhs-url" href="#">nhsfl.org</a></p>
+      <p class="fineprint">Every buyer on the loan signs up and attends separately. You need the certificate in hand before you close.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Chat -->
+<section class="section section--tint" id="chat" aria-labelledby="chat-h">
+  <div class="wrap">
+    <p class="eyebrow">Ask anything</p>
+    <h2 id="chat-h">Questions, answered straight</h2>
+    <p class="lede">This answers from notes built on first-hand information from the city staff who run the program. Where something has not been checked lately, it says so instead of guessing.</p>
+
+    <ul class="starters" id="starters">
+      <li><button class="starter" type="button">How much can I get?</button></li>
+      <li><button class="starter" type="button">I make $70K &mdash; do I qualify?</button></li>
+      <li><button class="starter" type="button">What are the boundaries?</button></li>
+      <li><button class="starter" type="button">What classes are available?</button></li>
+      <li><button class="starter" type="button">I'm divorced &mdash; do I still qualify?</button></li>
+      <li><button class="starter" type="button">I'm pre-approved for $200K &mdash; what can I buy?</button></li>
+      <li><button class="starter" type="button">Can I stack this with other programs?</button></li>
+      <li><button class="starter" type="button">What's the facade grant?</button></li>
+    </ul>
+
+    <div class="card">
+      <div class="log" id="chat-log" aria-live="polite" aria-atomic="false"></div>
+      <form class="composer" id="chat-form">
+        <label class="visually-hidden" for="chat-input">Type your question</label>
+        <input type="text" id="chat-input" autocomplete="off" placeholder="Type your question">
+        <button type="submit" id="chat-send" aria-label="Send your question">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Lead capture -->
+<section class="section" id="contact" aria-labelledby="contact-h">
+  <div class="wrap">
+    <h2 id="contact-h">Want a person to call you back?</h2>
+    <p class="lede" style="margin-bottom:1.25rem">No pressure and no cost. You will be pointed to a lender or to the class, whichever you need.</p>
+
+    <form name="callback" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="#contact">
+      <input type="hidden" name="form-name" value="callback">
+      <p class="hidden"><label>Leave this blank: <input name="bot-field"></label></p>
+
+      <div class="field">
+        <label for="lead-name">Your name</label>
+        <input type="text" id="lead-name" name="name" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="lead-phone">Phone</label>
+        <input type="tel" id="lead-phone" name="phone" autocomplete="tel" required>
+      </div>
+      <div class="field">
+        <label for="lead-email">Email</label>
+        <input type="email" id="lead-email" name="email" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="lead-interest">I'm interested in</label>
+        <div class="selectwrap">
+          <select id="lead-interest" name="interest">
+            <option>Talking to a lender who has closed these</option>
+            <option>Signing up for the homebuyer class</option>
+            <option>Finding a house inside the area</option>
+            <option>The repair and facade programs</option>
+            <option>Something else</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn--primary" type="submit">Send it</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <h2><span data-text="contacts.owner.name">&mdash;</span></h2>
+    <p>A free resource for the neighborhood. Not the City of St. Petersburg and not <span data-text="contacts.nhs.name">&mdash;</span>.</p>
+    <ul>
+      <li><a id="link-city" href="#">City purchase assistance page</a></li>
+      <li><a id="link-nhs" href="#">Neighborhood Home Solutions</a></li>
+      <li><a id="link-owner" href="#">IBuyStPete.com</a></li>
+      <li><a id="link-citymap" href="#">The city's own boundary map</a></li>
+    </ul>
+    <div class="footer__legal">
+      <p class="verified">Last verified <span data-date="lastVerified">&mdash;</span></p>
+      <p>Program rules, income limits and funding change without notice. Nothing here is a promise of assistance, a loan approval, or legal or tax advice. Confirm everything with the City of St. Petersburg and a licensed lender before you make a decision.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="calc.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

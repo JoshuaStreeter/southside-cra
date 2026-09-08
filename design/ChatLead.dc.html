@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;600;700&display=swap">
+  <style>
+    body { margin: 0; background: #FAF6F0; }
+    a { color: #8F3D28; text-decoration: underline; }
+    a:hover { color: #14293F; }
+  </style>
+</helmet>
+<div style="width: 390px; background: #FAF6F0; font-family: 'Nunito', 'Trebuchet MS', sans-serif; color: #2F3A45; box-sizing: border-box;">
+
+  <div style="padding: 30px 24px 30px 24px; display: flex; flex-direction: column; gap: 16px;">
+    <div>
+      <div style="color: #8F3D28; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px;">Ask anything</div>
+      <h2 style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 27px; line-height: 1.2; color: #14293F; margin: 0 0 8px 0;">Questions, answered straight</h2>
+      <p style="font-size: 16px; line-height: 1.55; margin: 0; color: #4A5561;">This answers from notes built on first-hand information from the city staff who run the program. Where something has not been checked lately, it says so instead of guessing.</p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+      <button type="button" style="min-height: 44px; background: #FFFFFF; color: #14293F; border: 1px solid #8C8371; font-family: 'Nunito', 'Trebuchet MS', sans-serif; font-size: 14px; font-weight: 600; padding: 0 14px; cursor: pointer;">How much can I get?</button>
+      <button type="button" style="min-height: 44px; background: #FFFFFF; color: #14293F; border: 1px solid #8C8371; font-family: 'Nunito', 'Trebuchet MS', sans-serif; font-size: 14px; font-weight: 600; padding: 0 14px; cursor: pointer;">I make $70K &mdash; do I qualify?</button>
+      <button type="button" style="min-height: 44px; background: #FFFFFF; color: #14293F; border: 1px solid #8C8371; font-family: 'Nunito', 'Trebuchet MS', sans-serif; font-size: 14px; font-weight: 600; padding: 0 14px; cursor: pointer;">What are the boundaries?</button>
+      <button type="button" style="min-height: 44px; background: #FFFFFF; color: #14293F; border: 1px solid #8C8371; font-family: 'Nunito', 'Trebuchet MS', sans-serif; font-size: 14px; font-weight: 600; padding: 0 14px; cursor: pointer;">What classes are available?</button>
+      <button type="button" style="min-height: 44px; background: #FFFFFF; color: #14293F; border: 1px solid #8C8371; font-family: 'Nunito', 'Trebuchet MS', sans-serif; font-size: 14px; font-weight: 600; padding: 0 14px; cursor: pointer;">I'm divorced &mdash; do I still qualify?</button>
+      <button type="button" style="min-height: 44px; background: #FFFFFF; color: #14293F; border: 1px solid #8C8371; font-family: 'Nunito', 'Trebuchet MS', sans-serif; font-size: 14px; font-weight: 600; padding: 0 14px; cursor: pointer;">I'm pre-approved for $200K &mdash; what can I buy?</button>
+      <button type="button" style="min-height: 44px; background: #FFFFFF; color: #14293F; border: 1px solid #8C8371; font-family: 'Nunito', 'Trebuchet MS', sans-serif; font-size: 14px; font-weight: 600; padding: 0 14px; cursor: pointer;">Can I stack this with other programs?</button>
+      <button type="button" style="min-height: 44px; background: #FFFFFF; color: #14293F; border: 1px solid #8C8371; font-family: 'Nunito', 'Trebuchet MS', sans-serif; font-size: 14px; font-weight: 600; padding: 0 14px; cursor: pointer;">What's the facade grant?</button>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #E8DFD1; padding: 18px; display: flex; flex-direction: column; gap: 14px;">
+      <div style="align-self: flex-end; max-width: 82%; background: #14293F; color: #FFFFFF; padding: 12px 14px; font-size: 15px; line-height: 1.5;">I make $70K &mdash; do I qualify?</div>
+      <div style="align-self: flex-start; max-width: 92%; background: #F4EFE6; color: #2F3A45; padding: 14px 15px; font-size: 15px; line-height: 1.6;">
+        <p style="margin: 0 0 10px 0;">For a two-person household, $70,000 sits above the 80% line and between 81% and 120% of area median income, so you may qualify on income. Household size moves that line, so tell me how many people will live there and I can be exact.</p>
+        <p style="margin: 0 0 10px 0;">One thing to know: as of April 2026 the city was over its spending limit for that band, so applications there may sit on a waitlist. Ask where funding stands before you write an offer.</p>
+        <p style="margin: 0;">These are estimates &mdash; verify with a lender who has closed CRA deals, or Neighborhood Home Solutions at (727) 821-6897.</p>
+      </div>
+      <div style="display: flex; gap: 8px; border-top: 1px solid #EFE7D9; padding-top: 14px;">
+        <div style="flex-grow: 1; min-height: 48px; border: 1px solid #8C8371; display: flex; align-items: center; padding: 0 12px; font-size: 15px; color: #5C6672;">Type your question</div>
+        <button type="button" aria-label="Send" style="min-width: 48px; min-height: 48px; background: #C0563A; border: 0; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15"></path><path d="M13 6l6 6-6 6"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: #F2ECE1; border-top: 1px solid #E4DACB; border-bottom: 1px solid #E4DACB; padding: 30px 24px;">
+    <h2 style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 25px; line-height: 1.2; color: #14293F; margin: 0 0 8px 0;">Want a person to call you back?</h2>
+    <p style="font-size: 15px; line-height: 1.55; margin: 0 0 20px 0; color: #4A5561;">No pressure and no cost. Josh will point you to a lender or the class, whichever you need.</p>
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      <div style="display: flex; flex-direction: column; gap: 7px;">
+        <label style="font-size: 14px; font-weight: 700; color: #14293F;">Your name</label>
+        <div style="min-height: 52px; background: #FFFFFF; border: 1px solid #8C8371;"></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 7px;">
+        <label style="font-size: 14px; font-weight: 700; color: #14293F;">Phone</label>
+        <div style="min-height: 52px; background: #FFFFFF; border: 1px solid #8C8371;"></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 7px;">
+        <label style="font-size: 14px; font-weight: 700; color: #14293F;">Email</label>
+        <div style="min-height: 52px; background: #FFFFFF; border: 1px solid #8C8371;"></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 7px;">
+        <label style="font-size: 14px; font-weight: 700; color: #14293F;">I'm interested in</label>
+        <div style="min-height: 52px; background: #FFFFFF; border: 1px solid #8C8371; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; font-size: 16px; color: #14293F;">
+          <span>Talking to a lender</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5C6672" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9l7 7 7-7"></path></svg>
+        </div>
+      </div>
+      <button type="button" style="min-height: 56px; background: #C0563A; color: #FFFFFF; border: 0; font-family: 'Nunito', 'Trebuchet MS', sans-serif; font-size: 17px; font-weight: 700; cursor: pointer; margin-top: 4px;">Send it</button>
+    </div>
+  </div>
+
+  <div style="background: #14293F; padding: 30px 24px 34px 24px;">
+    <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 700; color: #FFFFFF; margin-bottom: 6px;">IBuyStPete.com</div>
+    <p style="font-size: 14px; line-height: 1.6; color: #C9D6E2; margin: 0 0 20px 0;">A free resource for the neighborhood. Not the City of St. Petersburg and not Neighborhood Home Solutions.</p>
+    <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+      <a href="https://www.stpete.org/residents/grants___loans/purchase_assistance_program.php" style="color: #E7B75A; font-size: 15px;">City purchase assistance page</a>
+      <a href="https://nhsfl.org" style="color: #E7B75A; font-size: 15px;">Neighborhood Home Solutions</a>
+      <a href="https://ibuystpete.com" style="color: #E7B75A; font-size: 15px;">IBuyStPete.com</a>
+    </div>
+    <div style="border-top: 1px solid #2C4258; padding-top: 18px;">
+      <div style="font-size: 13px; font-weight: 700; color: #8FA3B7; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px;">Last verified September 7, 2026</div>
+      <p style="font-size: 13px; line-height: 1.6; color: #8FA3B7; margin: 0;">Program rules, income limits and funding change without notice. Nothing here is a promise of assistance, a loan approval, or legal or tax advice. Confirm everything with the City of St. Petersburg and a licensed lender before you make a decision.</p>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

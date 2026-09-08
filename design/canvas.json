@@ -1,0 +1,56 @@
+{
+  "artboards": [
+    {
+      "file": "Hero.dc.html",
+      "title": "1 \u00b7 Hero",
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 1000
+    },
+    {
+      "file": "AddressCheck.dc.html",
+      "title": "2 \u00b7 Address check",
+      "x": 470,
+      "y": 0,
+      "w": 390,
+      "h": 1150
+    },
+    {
+      "file": "Main.dc.html",
+      "title": "3 \u00b7 Calculator",
+      "x": 940,
+      "y": 0,
+      "w": 390,
+      "h": 2400
+    },
+    {
+      "file": "Credibility.dc.html",
+      "title": "4 \u00b7 Strings & stacking",
+      "x": 1410,
+      "y": 0,
+      "w": 390,
+      "h": 2700
+    },
+    {
+      "file": "ChatLead.dc.html",
+      "title": "5 \u00b7 Chat, contact, footer",
+      "x": 1880,
+      "y": 0,
+      "w": 390,
+      "h": 2500
+    }
+  ],
+  "annotations": [
+    {
+      "id": "flow-note",
+      "x": 0,
+      "y": -170,
+      "w": 700,
+      "text": "Five sections of ONE scrolling page, in order, at phone width (390px).\nThe navy block in section 1 is where your hero photo goes.\nNumbers shown are a worked example: 2 people, $68,000 income, $400 monthly debts, $1,850 rent."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}

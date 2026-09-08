@@ -1,0 +1,184 @@
+{
+  "_readme": "Single source of numbers for the site. Every figure has a 'source' and 'verified' date. If you change a number here, add a Changelog line in knowledge/CRA_Knowledge_V4.md too.",
+  "lastVerified": "2026-09-07",
+  "assistance": {
+    "pctOfPrice": 0.2,
+    "closingCostMax": 10000,
+    "totalCap": 75000,
+    "buyerContribPct": 0.01,
+    "maxPurchasePrice": 544233,
+    "occupancyYearsForForgiveness": 10,
+    "source": "DIRECTOR 2026-09 (closing $10K); CITY-WEB (cap, price cap - price cap needs FY2026 re-check)"
+  },
+  "forgiveness": [
+    {
+      "amiMax": 80,
+      "label": "Fully forgivable",
+      "rule": "100% forgiven after 10 years of owner occupancy",
+      "color": "green"
+    },
+    {
+      "amiMax": 120,
+      "label": "Fully forgivable",
+      "rule": "100% forgiven after 10 years of owner occupancy",
+      "color": "green"
+    },
+    {
+      "amiMax": 140,
+      "label": "Partial forgiveness",
+      "rule": "Deferred 5 years, then 50% repaid over the following 5 years",
+      "color": "amber"
+    }
+  ],
+  "fundingStatus": {
+    "band81to140": "over-budget",
+    "note": "As of April 2026 the city was over its spending limit for 81-140% AMI applications; those may be waitlisted. Re-verify.",
+    "source": "DIRECTOR 2026-04",
+    "verified": "2026-04"
+  },
+  "ami": {
+    "_note": "Tampa-St. Petersburg-Clearwater MSA. Only the 2-person FY2026 100/120 figures are verified. The 80% and 140% rows are derived from each household's 100% figure at 0.8x and 1.4x pending the full FY2026 SHIP table. Anything with estimated:true must render with an 'estimated' label.",
+    "fiscalYear": "FY2026 (partial) / FY2025 (stale)",
+    "households": {
+      "1": {
+        "80": 58400,
+        "100": 73000,
+        "120": 87600,
+        "140": 102200,
+        "estimated": true,
+        "source": "FY2025 published 100/120; 80 and 140 derived at 0.8x and 1.4x of the 100 figure (2026-09)"
+      },
+      "2": {
+        "80": 73360,
+        "100": 91700,
+        "120": 110040,
+        "140": 128380,
+        "estimated": true,
+        "source": "FY2026 SHIP 100/120 verified 2026-06; 80 and 140 derived at 0.8x and 1.4x of the 100 figure (2026-09)"
+      },
+      "3": {
+        "80": 75120,
+        "100": 93900,
+        "120": 112650,
+        "140": 131460,
+        "estimated": true,
+        "source": "FY2025 120 published, 100 interpolated; 80 and 140 derived at 0.8x and 1.4x of the 100 figure (2026-09)"
+      },
+      "4": {
+        "80": 83440,
+        "100": 104300,
+        "120": 125150,
+        "140": 146020,
+        "estimated": true,
+        "source": "FY2025 120 published, 100 interpolated; 80 and 140 derived at 0.8x and 1.4x of the 100 figure (2026-09)"
+      }
+    }
+  },
+  "affordability": {
+    "dtiLimit": 0.45,
+    "defaultRate": 6.5,
+    "loanTermMonths": 360,
+    "propertyTaxPctOfPrice": 0.015,
+    "estClosingCostPct": 0.025,
+    "estClosingCostSource": "DERIVED 2026-09 - typical Pinellas buyer costs; city closing allowance offsets",
+    "homeownersInsuranceAnnual": 3600,
+    "fha": {
+      "upfrontMip": 0.0175,
+      "annualMipUnder5Down": 0.0055,
+      "annualMip5to10Down": 0.005,
+      "mipYearsIfLtvUnder90": 11
+    },
+    "conventional": {
+      "pmiCancelsAtLtv": 0.8
+    },
+    "source": "CHECKED 2026-09; tax reflects Save Our Homes reset at sale, not the seller's bill"
+  },
+  "programs": {
+    "facadeGrant": {
+      "amount": 15000,
+      "paidUpFront": true,
+      "incomeLimit": null,
+      "note": "Cash up front, not reimbursement. Income limit and CRA-only status unverified.",
+      "source": "DIRECTOR 2026-09"
+    },
+    "rehabRebate": {
+      "pct": 0.4,
+      "minInvestment": 10000,
+      "incomeLimitAmi": 120,
+      "reimbursement": true,
+      "status": "intermittent",
+      "statusNote": "City page shows 'temporarily on hold' as of 2026-09-07; director said active in June. Tell visitors to call.",
+      "url": "https://www.stpete.org/residents/grants___loans/rebates_for_affordable_residential_rehabs.php"
+    },
+    "lenderGrants": [
+      {
+        "lender": "Bank of America",
+        "range": [
+          8000,
+          15000
+        ],
+        "verified": "2026-06",
+        "source": "JOSH"
+      },
+      {
+        "lender": "Fifth Third",
+        "range": [
+          8000,
+          15000
+        ],
+        "verified": "2026-06",
+        "source": "JOSH"
+      },
+      {
+        "lender": "U.S. Bank",
+        "range": null,
+        "verified": null,
+        "source": "UNVERIFIED - Josh checking"
+      }
+    ]
+  },
+  "boundary": {
+    "geojsonFile": "cra_boundary.geojson",
+    "geohubDatasetId": "81d48cd538f34c7f9aba176f2a85a2e0",
+    "cityMapUrl": "https://egis.stpete.org/portal/apps/webappviewer/index.html?id=23110ee207fd4a74824a45222b9a4325",
+    "roughEdges": {
+      "north": "2nd Ave N / I-275 / I-175 / Booker Creek",
+      "east": "4th St S",
+      "south": "30th Ave S",
+      "west": "49th St S"
+    }
+  },
+  "contacts": {
+    "nhs": {
+      "name": "Neighborhood Home Solutions",
+      "phone": "(727) 821-6897",
+      "url": "https://nhsfl.org",
+      "address": "1600 Dr. MLK Jr. St. S, St. Petersburg, FL 33701",
+      "role": "Required class + counseling only. Does NOT administer the program."
+    },
+    "cityProgramUrl": "https://www.stpete.org/residents/grants___loans/purchase_assistance_program.php",
+    "owner": {
+      "name": "IBuyStPete.com",
+      "url": "https://ibuystpete.com"
+    }
+  },
+  "classes2026": {
+    "provider": "Neighborhood Home Solutions",
+    "time": "Saturdays 8:30am-4:45pm",
+    "dates": [
+      "2026-01-24",
+      "2026-02-28",
+      "2026-03-28",
+      "2026-04-25",
+      "2026-05-23",
+      "2026-06-20",
+      "2026-07-18",
+      "2026-08-15",
+      "2026-09-19",
+      "2026-10-17",
+      "2026-11-14",
+      "2026-12-12"
+    ],
+    "flyer": "https://nhsfl.org/wp-content/uploads/2026/01/HOMEBUYER-EDUCATION-FLYER-2026-2.pdf"
+  }
+}
