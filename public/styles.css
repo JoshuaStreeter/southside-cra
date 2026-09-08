@@ -73,11 +73,23 @@ a:hover { color: var(--navy); }
 
 /* Hero */
 .hero__photo {
-  position: relative; min-height: 27rem;
+  position: relative; min-height: 26rem;
   background: var(--navy) url("img/hero.jpg") center / cover no-repeat;
+  border-bottom: 3px solid var(--gold);
   display: flex; align-items: flex-end;
 }
-.hero__band { width: 100%; background: var(--navy); border-top: 3px solid var(--gold); padding: 1.375rem 0 1.625rem; }
+/* The text sits on the photo behind a bottom-up navy scrim (rgb below is --navy).
+   The fade lives inside the band's top padding, so type never lands above the
+   90% stop. Worst case measured over the photo: #fff 10.5:1, --on-navy 7.1:1,
+   --gold 4.7:1. The shadow is insurance for a line that wraps into the fade. */
+.hero__band {
+  width: 100%; padding: 6rem 0 1.625rem;
+  background: linear-gradient(to top,
+    rgba(20, 41, 63, .96) 0,
+    rgba(20, 41, 63, .90) calc(100% - 6rem),
+    rgba(20, 41, 63, 0) 100%);
+  text-shadow: 0 1px 2px rgba(20, 41, 63, .55);
+}
 .hero__band .eyebrow { color: var(--gold); }
 .hero__band h1 { color: #fff; margin-bottom: .75rem; }
 .hero__band p { color: var(--on-navy); margin: 0; }
@@ -266,6 +278,7 @@ select { appearance: none; background-image: none; }
 
 @media (min-width: 34rem) {
   h1 { font-size: 2.5rem; }
+  .hero__photo { min-height: 34rem; }
   .chips { flex-direction: row; }
   .chip { flex: 1 1 0; flex-direction: column; gap: .25rem; }
 }
